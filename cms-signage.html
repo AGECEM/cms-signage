@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CMS Signage</title>
+    <meta http-equiv="refresh" content="5" />
+    <style>
+        body {
+            background-color: red;
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+        
+        embed {
+            max-width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .contenu {
+            background-color: black;
+            position: fixed;
+            text-align: center;
+            width: 100%;
+            height: 91%;
+            top: 0;
+            left: 0;
+        }
+        
+        .bar {
+            background-color: grey;
+            position: fixed;
+            width: 100%;
+            height: 9%;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenu">
+        <!--Embed goes here-->
+        <embed src="contenu/logo_AGECEM.jpg" />
+    </div>
+
+    <div class="bar">
+        <!--Navigation bar, datetime and stuff goes here-->
+    </div>
+</body>
+
+</html>
