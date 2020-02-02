@@ -3,7 +3,9 @@
 
 <head>
     <title>CMS Signage</title>
-    <meta http-equiv="refresh" content="10" />
+    <!--
+        <meta http-equiv="refresh" content="10" />
+    -->
     <style>
         body {
             background-color: red;
@@ -11,13 +13,13 @@
             padding: 0px;
             border: 0px;
         }
-        
+
         embed {
             max-width: 100%;
             height: 100%;
             object-fit: contain;
         }
-        
+
         #contenu {
             background-color: black;
             position: fixed;
@@ -27,7 +29,7 @@
             top: 0;
             left: 0;
         }
-        
+
         #bar {
             background-color: #2b2d2f;
             position: fixed;
@@ -37,14 +39,14 @@
             bottom: 0;
             left: 0;
         }
-        
+
         img#bar-bg {
             position: absolute;
             width: 100%;
             height: 100%;
             z-index: -1;
         }
-        
+
         #banner-text {
             position: relative;
             color: yellow;
@@ -52,7 +54,7 @@
             font-weight: bold;
             z-index: 1;
         }
-        
+
         #currentTime {
             text-align: left;
             font-size: 300%;
@@ -66,7 +68,7 @@
     <div id="contenu">
         <!--Embed goes here-->
         <!--<embed src="contenu/05 - partyagecem13mars télé.jpg" />-->
-        <embed src="contenu/03 - 2016.01.26 - Affiche tv - Diva cup.jpg"/>
+        <embed src="contenu/03 - 2016.01.26 - Affiche tv - Diva cup.jpg" />
     </div>
 
     <div id="bar">
@@ -82,14 +84,20 @@
             <!-- Time -->
             <div id="currentTime" />
             <script>
-                var date = new Date();
-                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-                time = hours + ":" + minutes;
+                $message = "woaah"
 
-                document.getElementById("currentTime").innerHTML = time;
+                function currentTime() {
+                    var date = new Date();
+                    var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                    var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+                    return hours + ":" + minutes + ":" + seconds;
+                }
+
+                setInterval(function () { document.getElementById("currentTime").innerHTML = currentTime(); }, 1000);
             </script>
-            
+
         </div>
 
     </div>
