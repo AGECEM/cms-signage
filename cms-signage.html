@@ -38,13 +38,24 @@
             left: 0;
         }
         
-        #currentDateTime {
+        img#bar-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        #banner-text {
             position: relative;
-            color: teal;
+            color: yellow;
             font-family: sans-serif;
             font-weight: bold;
-            font-size: 420%;
-            left: 5px;
+            z-index: 1;
+        }
+        
+        #currentTime {
+            text-align: left;
+            font-size: 300%;
         }
     </style>
 </head>
@@ -54,22 +65,26 @@
 <body>
     <div id="contenu">
         <!--Embed goes here-->
-        <embed src="contenu/logo_AGECEM.jpg" />
+        <!--<embed src="contenu/05 - partyagecem13mars télé.jpg" />-->
+        <embed src="contenu/06 - 2019.12.04_bal.hivernal.pdf"/>
     </div>
 
     <div id="bar">
         <!--Navigation bar, datetime and stuff goes here-->
-
+        <img id="bar-bg" src="ressources/degrade_bleu-gris.jpg" />
         <!-- Works, mais pas homebrew
         <iframe src="http://free.timeanddate.com/clock/i73mmlu4/n165/tlca2/fn6/fs28/fc9ff/tct/pct/ftb/pa8/tt0/tw1/th1/tb4" frameborder="0" width="337" height="86" allowTransparency="true"></iframe>
         -->
 
         <!-- Works somewhat-->
-        <span id="currentDateTime" />
+        <div id="banner-text">
 
-        <script>
-            document.getElementById("currentDateTime").innerHTML = ((new Date()).toLocaleTimeString()).substr(0, 5);
-        </script>
+            <!-- Time -->
+            <div id="currentTime" />
+            <script>
+                document.getElementById("currentTime").innerHTML = ((new Date()).toLocaleTimeString()).substr(0, 4);
+            </script>
+        </div>
 
     </div>
 </body>
