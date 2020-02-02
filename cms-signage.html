@@ -82,7 +82,12 @@
             <!-- Time -->
             <div id="currentTime" />
             <script>
-                document.getElementById("currentTime").innerHTML = ((new Date()).toLocaleTimeString()).substr(0, 4);
+                var date = new Date();
+                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                time = hours + ":" + minutes;
+
+                document.getElementById("currentTime").innerHTML = time;
             </script>
             
         </div>
