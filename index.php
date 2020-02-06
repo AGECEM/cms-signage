@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <title>CMS Signage</title>
-    <!--
-        <meta http-equiv="refresh" content="10" />
-    -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <style>
         body {
             background-color: red;
-            margin: 0px;
-            padding: 0px;
-            border: 0px;
+            margin: 0;
+            padding: 0;
+            border: 0;
         }
 
         embed {
@@ -63,49 +63,84 @@
 </head>
 
 
-
 <body>
-    <div id="contenu">
-        <!--Embed goes here-->
-        <!--<embed src="contenu/05 - partyagecem13mars télé.jpg" />-->
+<div id="contenu">
+    <embed id="image"/>
+    <script>
 
-	<?php
-		$dir = "/contenu";
-		$files = scandir($dir);
-	?>
-        <!--<embed src="contenu/03 - 2016.01.26 - Affiche tv - Diva cup.jpg" />-->
-	<embed src="<?php echo $files[0];?>"/>
-    </div>
+        const REFRESH_TIME = 10000;
+        let canRun = true;
 
-    <div id="bar">
-        <!--Navigation bar, datetime and stuff goes here-->
-        <img id="bar-bg" src="ressources/degrade_bleu-gris.jpg" />
-        <!-- Works, mais pas homebrew
-        <iframe src="http://free.timeanddate.com/clock/i73mmlu4/n165/tlca2/fn6/fs28/fc9ff/tct/pct/ftb/pa8/tt0/tw1/th1/tb4" frameborder="0" width="337" height="86" allowTransparency="true"></iframe>
-        -->
+        function updateImage(images, index) {
+            document.getElementById("image").setAttribute("src", "contenu/" + images[index]);
+        }
 
-        <!-- Works somewhat-->
-        <div id="banner-text">
+        function getImages() {
 
-            <!-- Time -->
-            <div id="currentTime" />
-            <script>
-                $message = "woaah"
+            $.ajax({
+                url: 'getImages.php',
+                type: 'POST',
+                dataType: 'json',
+                success: function (obj, textstatus) {
+                    if (textstatus === "success") {
+                        const images = Object.keys(obj).map((key) => [obj[key]]);
+                        let index = 0;
 
-                function currentTime() {
-                    var date = new Date();
-                    var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-                    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-                    var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-
-                    return hours + ":" + minutes + ":" + seconds;
+                        updateImage(images, index);
+                        const intervalUpdate = setInterval(function () {
+                            index++;
+                            updateImage(images, index);
+                            if (index >= images.length - 1) {
+                                clearInterval(intervalUpdate);
+                                setTimeout(function () {
+                                    canRun = true;
+                                }, REFRESH_TIME);
+                            }
+                        }, REFRESH_TIME);
+                    }
                 }
+            });
+        }
 
-                setInterval(function () { document.getElementById("currentTime").innerHTML = currentTime(); }, 1000);
-            </script>
-        </div>
+        $(document).ready(function () {
+            setInterval(function () {
+                console.log(canRun);
+                if (canRun) {
+                    canRun = false;
+                    getImages();
+                }
+            }, 600)
+        });
 
+    </script>
+</div>
+
+<div id="bar">
+    <!--Navigation bar, datetime and stuff goes here
+    TODO trouver une meilleure facon de mettre le background image du div au degrade
+-->
+    <img id="bar-bg" src="ressources/degrade_bleu-gris.jpg" alt="bar"/>
+
+    <div id="banner-text">
+
+        <div id="currentTime"></div>
+        <script>
+            function currentTime() {
+                const date = new Date();
+                const hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                const seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+                return hours + ":" + minutes + ":" + seconds;
+            }
+
+            setInterval(function () {
+                document.getElementById("currentTime").innerHTML = currentTime();
+            }, 1000);
+        </script>
     </div>
+
+</div>
 </body>
 
 </html>
