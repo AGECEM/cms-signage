@@ -1,6 +1,34 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+    startDateTime()
+});
+
+function startDateTime() {
+    setDateTime();
+    setInterval(function () {
+        setDateTime()
+    }, 60000);
+}
+
 function setDateTime() {
     document.getElementById("time").innerHTML = currentTime();
     document.getElementById("date").innerHTML = currentDate();
+}
+
+function currentTime() {
+    const date = new Date();
+    const hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+    const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+
+    return hours + ":" + minutes;
+}
+
+function currentDate() {
+    const d = new Date();
+    const day = getDayOfWeek(d.getDay());
+    const date = d.getDate();
+    const month = getMonth(d.getMonth());
+
+    return day + " " + date + " " + month;
 }
 
 function getDayOfWeek(day) {
@@ -27,7 +55,7 @@ function getMonth(month) {
         case 0:
             return "Jan";
         case 1:
-            return "Fev";
+            return "Fév";
         case 2:
             return "Mar";
         case 3:
@@ -49,21 +77,4 @@ function getMonth(month) {
         case 11:
             return "Déc";
     }
-}
-
-function currentDate() {
-    const d = new Date();
-    const day = getDayOfWeek(d.getDay());
-    const date = d.getDate();
-    const month = getMonth(d.getDay());
-
-    return day + " " + date + " " + month;
-}
-
-function currentTime() {
-    const date = new Date();
-    const hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-    const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-
-    return hours + ":" + minutes;
 }
