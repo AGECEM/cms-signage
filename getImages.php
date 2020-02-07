@@ -1,7 +1,5 @@
 <?php
 $dir = "contenu";
 $files = scandir($dir);
-unset($files[0]);
-unset($files[1]);
 
-echo json_encode($files);
+echo json_encode(array_values(array_diff($files, array('.', '..'))));
