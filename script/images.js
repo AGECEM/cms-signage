@@ -29,7 +29,7 @@ function fetchImages() {
 
 function nextImage() {
     document.getElementById("image")
-        .setAttribute("src", "contenu/" + images[0]);
+        .setAttribute("src", images[0]);
     images.shift();
     if (images.length < 1) {
         fetchImages();
