@@ -49,7 +49,9 @@ img#bar-bg {
     position: absolute;
     white-space: nowrap;
     z-index: 0;
-    display: flex;
+    display: block;
+    height: 100%;
+    padding-top: 55px;
 }
 
 #text-container {
@@ -62,7 +64,9 @@ img#bar-bg {
 }
 
 #text-content div {
-    margin-right: 50px;
+    display: block;
+    position: fixed;
+    height: 100%;
 }
 
 #date-time {

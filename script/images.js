@@ -1,7 +1,7 @@
 const IMAGE_TIME = 12000;
 let images = [];
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     startImages()
 });
 
@@ -9,7 +9,7 @@ function startImages() {
     fetchImages().then(() => {
         nextImage()
     });
-    setInterval(function () {
+    setInterval(() => {
         if (images.length > 0) {
             nextImage()
         }
