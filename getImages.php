@@ -1,5 +1,5 @@
 <?php
 $dir = "contenu";
-$files = scandir($dir);
+$files = glob($dir . '/*.{jpg,png,jpeg,gif,pdf}', GLOB_BRACE);
 
-echo json_encode(array_values(array_diff($files, array('.', '..'))));
+echo json_encode($files);

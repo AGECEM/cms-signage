@@ -6,6 +6,7 @@
 
     <script src="script/date.js"></script>
     <script src="script/images.js"></script>
+    <script src="script/messages.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -24,7 +25,9 @@
         <div id="date"></div>
     </div>
 
-    <div id="info-text"></div>
+    <div id="text-container">
+        <div id="text-content"></div>
+    </div>
 
 </div>
 </body>
