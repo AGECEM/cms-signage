@@ -1,2 +1,4 @@
 contenu/*
 !contenu/.gitkeep
+!contenu/"00 - logo_agecem.jpg"
+!contenu/messages.txt
