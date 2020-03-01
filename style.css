@@ -18,6 +18,7 @@ embed {
     text-align: center;
     width: 100%;
     flex: 1;
+    min-height: 0;
 }
 
 #bar {
@@ -44,7 +45,6 @@ img#bar-bg {
 }
 
 #text-content {
-    position: absolute;
     white-space: nowrap;
     z-index: 0;
     display: block;
