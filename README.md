@@ -8,3 +8,4 @@ Les images à afficher peuvent être déposées dans le répertoire `contenu`. L
 ## Affichage de messages
 
 Les messages à afficher sont dans le fichier `messages.txt`. Chaque ligne de texte représente un message à afficher.
+NOTE: toujours s'assurer que l'encodage du fichier `messages.txt` reste en UTF-8.
