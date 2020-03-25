@@ -3,7 +3,7 @@ Application web pour digital signage
 
 ## Affichage d'images
 
-Les images à afficher peuvent être déposées dans le répertoire `contenu`. Les types fichiers supportés sont `jpg`, `png`, `jpeg`, `gif`, `pdf`.
+Les images à afficher peuvent être déposées dans le répertoire `contenu`. Les types fichiers supportés sont `jpg`, `png`, `jpeg`, `gif`.
 
 ## Affichage de messages
 
